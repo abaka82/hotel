@@ -10,7 +10,7 @@ module.exports = {
   // Binding to 127.0.0.1 is safer in production.
   host: process.env.HOST || '0.0.0.0',
   db: {
-    uri: 'mongodb://test:test@ds013014.mlab.com:13014/hotel',
+    uri: 'mongodb://test:test@ds017896.mlab.com:17896/hoteldb',
     options: {
       user: '',
       pass: ''
