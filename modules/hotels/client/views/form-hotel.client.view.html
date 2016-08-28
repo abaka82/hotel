@@ -32,7 +32,7 @@
           <label class="control-label" for="stars">Stars</label>
           <input name="stars" type="text" ng-model="vm.hotel.stars" id="stars"
                  class="form-control" placeholder="Hotel stars" ng-max="100" ng-min="0"
-                 ng-pattern="/^\$?[0-9]+(\.[0-9][0-9])?$/" required>
+                 ng-pattern="/^[0-9]+([,.][0-9]+)?$/" required>
           <div ng-messages="vm.form.hotelForm.stars.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Hotel stars is required.</p>
           </div>
