@@ -1,0 +1,33 @@
+<section>
+  <div class="page-header">
+    <h1>Hotels</h1>
+  </div>
+  <div class="list-group">
+
+    <a ng-repeat="hotel in vm.hotels" ui-sref="hotels.view({ hotelId: hotel._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="hotel.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="hotel.user" ng-bind="hotel.user.displayName"></span>
+        <span ng-if="!hotel.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="hotel.hotelID"></h4>
+      <p class="list-group-item-text" ng-bind="hotel.hotelName"></p>
+      <b>Start URL:</b> <p class="list-group-item-text" ng-bind="hotel.startURL"></p>
+      <b>Address:</b> <p class="list-group-item-text" ng-bind="hotel.address"></p>
+      <b>Stars:</b> <p class="list-group-item-text" ng-bind="hotel.stars | number"></p>
+      <b>Website:</b> <p class="list-group-item-text" ng-bind="hotel.website"></p>
+      <b>Website URL:</b> <p class="list-group-item-text" ng-bind="hotel.websiteURL"></p>
+      <b>MapURL:</b> <p class="list-group-item-text" ng-bind="hotel.mapURL"></p>
+      <b>Number Of Google Reviews:</b> <p class="list-group-item-text" ng-bind="hotel.numberOfGoogleReviews | number"></p>
+      <b>Booking_com Price:</b> <p class="list-group-item-text" ng-bind="hotel.booking_comPrice"></p>
+      <b>Hotels_com Price:</b> <p class="list-group-item-text" ng-bind="hotel.hotels_comPrice"></p>
+      <b>Agoda Price:</b> <p class="list-group-item-text" ng-bind="hotel.agodaPrice"></p>
+      <b>Other Price:</b> <p class="list-group-item-text" ng-bind="hotel.otherPrice"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.hotels.$resolved && !vm.hotels.length">
+    No hotels yet, why don't you <a ui-sref="hotels.create">create one</a>?
+  </div>
+</section>

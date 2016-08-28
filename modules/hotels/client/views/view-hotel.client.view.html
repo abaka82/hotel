@@ -1,0 +1,96 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.hotel.hotelID"></h1>
+  </div>
+  <div class="pull-right" ng-show="vm.hotel.isCurrentUserOwner">
+    <a class="btn btn-primary" ui-sref="hotels.edit({ hotelId: vm.hotel._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Hotel Name</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.hotelName"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Start URL</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.startURL"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Address</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.address"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>stars</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.stars | number"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Website</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.website"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Website URL</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.websiteURL"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Map URL</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.mapURL"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Number Of Google Reviews</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.numberOfGoogleReviews | number"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Booking_com Price</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.booking_comPrice"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Hotels_com Price</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.hotels_comPrice"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Agoda Price</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.agodaPrice"></span>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-2"><h4>Other Price</h4></div>
+     <div class="col-md-5">
+        <span ng-bind="vm.hotel.otherPrice"></span>
+     </div>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.hotel.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.hotel.user" ng-bind="vm.hotel.user.displayName"></span>
+      <span ng-if="!vm.hotel.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.hotel.content"></p>
+</section>
+

@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <h1>Vouchers</h1>
+  </div>
+  <div class="list-group">
+
+    <a ng-repeat="voucher in vm.vouchers" ui-sref="vouchers.view({ voucherId: voucher._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="voucher.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="voucher.user" ng-bind="voucher.user.displayName"></span>
+        <span ng-if="!voucher.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="voucher.voucherCode"></h4>
+      <p class="list-group-item-text" ng-bind="voucher.title"></p>
+      Discount Percent
+      <p class="list-group-item-text" ng-bind="voucher.discountPercent"></p>
+      Discount Amount
+      <p class="list-group-item-text" ng-bind="voucher.discountAmount | currency"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.vouchers.$resolved && !vm.vouchers.length">
+    No vouchers yet, why don't you <a ui-sref="vouchers.create">create one</a>?
+  </div>
+</section>

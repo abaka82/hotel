@@ -1,0 +1,68 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.voucher._id ? 'Edit Voucher' : 'New Voucher'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.voucherForm" class="form-horizontal" ng-submit="vm.save(vm.form.voucherForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="voucherCode">Voucher Code</label>
+          <input name="voucherCode" type="text" ng-model="vm.voucher.voucherCode" id="voucherCode" class="form-control" placeholder="Voucher Code" required>
+          <div ng-messages="vm.form.voucherForm.voucherCode.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Voucher code is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="title">Voucher Title</label>
+          <textarea name="title" data-ng-model="vm.voucher.title" id="title" class="form-control" cols="30" rows="5" placeholder="Title"></textarea>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="discountPercent">Discount Percent</label>
+          <input name="discountPercent" type="text" ng-model="vm.voucher.discountPercent" id="discountPercent"
+                 class="form-control" placeholder="Voucher discount in percent" ng-max="100" ng-min="0"
+                 ng-pattern="/^\$?[0-9]+(\.[0-9][0-9])?$/" required>
+          <div ng-messages="vm.form.voucherForm.discountPercent.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Discount percent is required.</p>
+          </div>
+          <span style="color:red" ng-show="vm.form.voucherForm.discountPercent.$error.pattern">
+             Please insert the correct format
+          </span>
+          <span style="color:red" ng-show="vm.form.voucherForm.discountPercent.$error.min">
+             Min voucher discount percent is 0
+          </span>
+          <span style="color:red" ng-show="vm.form.voucherForm.discountPercent.$error.max">
+             Max voucher discount percent is 100
+          </span>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="discountAmount">Discount Amount</label>
+          <input name="discountAmount" type="text" ng-model="vm.voucher.discountAmount" id="discountAmount"
+                 class="form-control" placeholder="Voucher discount in amount" ng-max="999999999" ng-min="0"
+                 ng-pattern="/^\$?[0-9]+(\.[0-9][0-9])?$/" required>
+          <div ng-messages="vm.form.voucherForm.discountAmount.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Voucher amount is required.</p>
+          </div>
+          <span style="color:red" ng-show="vm.form.voucherForm.discountAmount.$error.pattern">
+             Please insert the correct format
+          </span>
+          <span style="color:red" ng-show="vm.form.voucherForm.discountAmount.$error.min">
+             Min voucher discount amount is 0
+          </span>
+          <span style="color:red" ng-show="vm.form.voucherForm.discountAmount.$error.max">
+             Max voucher discount amount is 999999999
+          </span>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.voucher._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

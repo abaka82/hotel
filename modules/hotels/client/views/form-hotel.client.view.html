@@ -1,0 +1,113 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.hotel._id ? 'Edit Hotel' : 'New Hotel'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.hotelForm" class="form-horizontal" ng-submit="vm.save(vm.form.hotelForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="hotelCode">Hotel ID</label>
+          <input name="hotelID" type="text" ng-model="vm.hotel.hotelID" id="hotelID" class="form-control" placeholder="Hotel ID" required>
+          <div ng-messages="vm.form.hotelForm.hotelID.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Hotel ID is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="startURL">Hotel Start URL</label>
+          <textarea name="startURL" data-ng-model="vm.hotel.startURL" id="startURL" class="form-control" cols="30" rows="3" placeholder="Start URL"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="hotelName">Hotel Name</label>
+          <input name="hotelName" type="text" ng-model="vm.hotel.hotelName" id="hotelName" class="form-control" placeholder="Hotel Name">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="address">Hotel address</label>
+          <textarea name="address" data-ng-model="vm.hotel.address" id="address" class="form-control" cols="30" rows="3" placeholder="address"></textarea>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="stars">Stars</label>
+          <input name="stars" type="text" ng-model="vm.hotel.stars" id="stars"
+                 class="form-control" placeholder="Hotel stars" ng-max="100" ng-min="0"
+                 ng-pattern="/^\$?[0-9]+(\.[0-9][0-9])?$/" required>
+          <div ng-messages="vm.form.hotelForm.stars.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Hotel stars is required.</p>
+          </div>
+          <span style="color:red" ng-show="vm.form.hotelForm.stars.$error.pattern">
+             Please insert the correct format
+          </span>
+          <span style="color:red" ng-show="vm.form.hotelForm.stars.$error.min">
+             Min hotel stars is 0
+          </span>
+          <span style="color:red" ng-show="vm.form.hotelForm.stars.$error.max">
+             Max hotel stars is 100
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="website">Hotel Website</label>
+          <input name="website" type="text" ng-model="vm.hotel.website" id="website" class="form-control" placeholder="Hotel website">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="websiteURL">Hotel website URL</label>
+          <input name="websiteURL" type="text" ng-model="vm.hotel.websiteURL" id="websiteURL" class="form-control" placeholder="Hotel website URL">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="mapURL">Hotel map URL</label>
+          <input name="mapURL" type="text" ng-model="vm.hotel.mapURL" id="mapURL" class="form-control" placeholder="Hotel map URL">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="numberOfGoogleReviews">Number Of Google Reviews</label>
+          <input name="numberOfGoogleReviews" type="text" ng-model="vm.hotel.numberOfGoogleReviews" id="numberOfGoogleReviews"
+                 class="form-control" placeholder="Number Of Google Reviews" ng-max="100000000" ng-min="0"
+                 ng-pattern="/^\$?[0-9]+(\.[0-9][0-9])?$/" required>
+          <div ng-messages="vm.form.hotelForm.numberOfGoogleReviews.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Number Of Google Reviews is required.</p>
+          </div>
+          <span style="color:red" ng-show="vm.form.hotelForm.numberOfGoogleReviews.$error.pattern">
+             Please insert the correct format
+          </span>
+          <span style="color:red" ng-show="vm.form.hotelForm.numberOfGoogleReviews.$error.min">
+             Min Number Of Google Reviews is 0
+          </span>
+          <span style="color:red" ng-show="vm.form.hotelForm.numberOfGoogleReviews.$error.max">
+             Max Number Of Google Reviews is 100000000
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="booking_comPrice">Hotel booking_com Price</label>
+          <input name="booking_comPrice" type="text" ng-model="vm.hotel.booking_comPrice" id="booking_comPrice" class="form-control" placeholder="Hotel booking_com Price">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="hotels_comPrice">Hotel hotels_com Price</label>
+          <input name="hotels_comPrice" type="text" ng-model="vm.hotel.hotels_comPrice" id="hotels_comPrice" class="form-control" placeholder="Hotel hotels_com Price">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="agodaPrice">Hotel agoda Price</label>
+          <input name="agodaPrice" type="text" ng-model="vm.hotel.agodaPrice" id="agodaPrice" class="form-control" placeholder="Hotel agoda Price">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="otherPrice">Hotel other Price</label>
+          <input name="otherPrice" type="text" ng-model="vm.hotel.otherPrice" id="otherPrice" class="form-control" placeholder="Hotel other Price">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.hotel._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
