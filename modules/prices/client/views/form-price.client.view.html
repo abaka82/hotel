@@ -1,0 +1,113 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.price._id ? 'Edit Price' : 'New Price'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.priceForm" class="form-horizontal" ng-submit="vm.save(vm.form.priceForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="priceCode">Price ID</label>
+          <input name="priceID" type="text" ng-model="vm.price.priceID" id="priceID" class="form-control" placeholder="Price ID" required>
+          <div ng-messages="vm.form.priceForm.priceID.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Price ID is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="startURL">Price Start URL</label>
+          <textarea name="startURL" data-ng-model="vm.price.startURL" id="startURL" class="form-control" cols="30" rows="3" placeholder="Start URL"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="priceName">Price Name</label>
+          <input name="priceName" type="text" ng-model="vm.price.priceName" id="priceName" class="form-control" placeholder="Price Name">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="address">Price address</label>
+          <textarea name="address" data-ng-model="vm.price.address" id="address" class="form-control" cols="30" rows="3" placeholder="address"></textarea>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="stars">Stars</label>
+          <input name="stars" type="text" ng-model="vm.price.stars" id="stars"
+                 class="form-control" placeholder="Price stars" ng-max="100" ng-min="0"
+                 ng-pattern="/^[0-9]+([,.][0-9]+)?$/" required>
+          <div ng-messages="vm.form.priceForm.stars.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Price stars is required.</p>
+          </div>
+          <span style="color:red" ng-show="vm.form.priceForm.stars.$error.pattern">
+             Please insert the correct format
+          </span>
+          <span style="color:red" ng-show="vm.form.priceForm.stars.$error.min">
+             Min price stars is 0
+          </span>
+          <span style="color:red" ng-show="vm.form.priceForm.stars.$error.max">
+             Max price stars is 100
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="website">Price Website</label>
+          <input name="website" type="text" ng-model="vm.price.website" id="website" class="form-control" placeholder="Price website">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="websiteURL">Price website URL</label>
+          <input name="websiteURL" type="text" ng-model="vm.price.websiteURL" id="websiteURL" class="form-control" placeholder="Price website URL">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="mapURL">Price map URL</label>
+          <input name="mapURL" type="text" ng-model="vm.price.mapURL" id="mapURL" class="form-control" placeholder="Price map URL">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="numberOfGoogleReviews">Number Of Google Reviews</label>
+          <input name="numberOfGoogleReviews" type="text" ng-model="vm.price.numberOfGoogleReviews" id="numberOfGoogleReviews"
+                 class="form-control" placeholder="Number Of Google Reviews" ng-max="100000000" ng-min="0"
+                 ng-pattern="/^\$?[0-9]+(\.[0-9][0-9])?$/" required>
+          <div ng-messages="vm.form.priceForm.numberOfGoogleReviews.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Number Of Google Reviews is required.</p>
+          </div>
+          <span style="color:red" ng-show="vm.form.priceForm.numberOfGoogleReviews.$error.pattern">
+             Please insert the correct format
+          </span>
+          <span style="color:red" ng-show="vm.form.priceForm.numberOfGoogleReviews.$error.min">
+             Min Number Of Google Reviews is 0
+          </span>
+          <span style="color:red" ng-show="vm.form.priceForm.numberOfGoogleReviews.$error.max">
+             Max Number Of Google Reviews is 100000000
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="booking_comPrice">Price booking_com Price</label>
+          <input name="booking_comPrice" type="text" ng-model="vm.price.booking_comPrice" id="booking_comPrice" class="form-control" placeholder="Price booking_com Price">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="prices_comPrice">Price prices_com Price</label>
+          <input name="prices_comPrice" type="text" ng-model="vm.price.prices_comPrice" id="prices_comPrice" class="form-control" placeholder="Price prices_com Price">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="agodaPrice">Price agoda Price</label>
+          <input name="agodaPrice" type="text" ng-model="vm.price.agodaPrice" id="agodaPrice" class="form-control" placeholder="Price agoda Price">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="otherPrice">Price other Price</label>
+          <input name="otherPrice" type="text" ng-model="vm.price.otherPrice" id="otherPrice" class="form-control" placeholder="Price other Price">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.price._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

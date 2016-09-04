@@ -17,7 +17,8 @@
     "ng-table": "^0.8.3",
     "angular-ui-select": "^0.17.1",
     "font-awesome": ">=4.1.0",
-    "angular-toastr": "^1.7.0"
+    "angular-toastr": "^1.7.0",
+    "angular-csv-import": "^0.0.36"
   },
   "overrides": {
     "bootstrap": {

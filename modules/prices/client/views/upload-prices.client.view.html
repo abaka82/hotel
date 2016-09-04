@@ -1,0 +1,52 @@
+<section>
+  <div class="page-header">
+    <h1>Upload CSV Prices</h1>
+  </div>
+
+  </div>
+       <div class="row well">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="control-label" for="any">Select your CSV file:</label>
+                    <ng-csv-import
+                      class = "import"
+                      content = "vm.csv.content"
+                      header = "vm.csv.header"
+                      header-visible = "vm.csv.headerVisible"
+                      separator = "vm.csv.separator"
+                      separator-visible = "vm.csv.separatorVisible"
+                      result = "vm.csv.result"
+                      encoding = "vm.csv.encoding"
+                      encoding-visible = "vm.csv.encodingVisible"
+                      callback = "vm.callback">
+                    </ng-csv-import>
+                </div>
+            </div>
+        </div>
+    </div>
+  <h3>CSV file content</h3>
+
+  <table class="table table-condensed table-bordered table-striped">
+    <thead>
+        <tr>
+            <th><input type="checkbox" ng-model="vm.csv.result.allItemsSelected" ng-change="vm.selectAll()"></th>
+            <th>Match Hotel ID</th>
+            <th>Hotel Name</th>
+            <th>Street Address</th>
+            <th>Current Price (USD)</th>
+            <th>Old Price (USD)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="entity in vm.csv.result" ng-class="{selected: entity.isChecked}">
+            <td><input type="checkbox" ng-model="entity.isChecked" ng-change="vm.selectEntity()"></td>
+            <td>{{entity['hotelID']}}</td>
+            <td>{{entity['Hotel Name']}}</td>
+            <td>{{entity['Street Address']}}</td>
+            <td>{{entity['Current Price (USD)']}}</td>
+            <td>{{entity['Old Price (USD)']}}</td>
+        </tr>
+    </tbody>
+  </table>
+
+</section>
