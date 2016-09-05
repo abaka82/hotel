@@ -15,18 +15,23 @@ var PriceSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  priceID: {
-    type: String,
-    default: '',
-    trim: true,
-    required: 'Price ID cannot be blank'
-  },
-  startURL: {
+  checkIn: {
     type: String,
     default: '',
     trim: true
   },
-  priceName: {
+  hotelName: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'Hotel name cannot be blank'
+  },
+  hotelID: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  URL: {
     type: String,
     default: '',
     trim: true
@@ -36,52 +41,33 @@ var PriceSchema = new Schema({
     default: '',
     trim: true
   },
-  stars: {
+  city: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  state: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  postalCode: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  country: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  currentPrice: {
     type: Number,
-    default: 0,
-    min: 0,
-    max: 100
+    default: 0
   },
-  website: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  websiteURL: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  mapURL: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  numberOfGoogleReviews: {
+  oldPrice: {
     type: Number,
-    default: 0,
-    min: 0,
-    max: 100000000
-  },
-  booking_comPrice: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  prices_comPrice: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  agodaPrice: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  otherPrice: {
-    type: String,
-    default: '',
-    trim: true
+    default: 0
   },
   user: {
     type: Schema.ObjectId,

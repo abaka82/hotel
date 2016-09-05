@@ -24,8 +24,15 @@
             </div>
         </div>
     </div>
-  <h3>CSV file content</h3>
 
+<div class="row" ng-show = "vm.csv.result.count > 0">
+  <div class="col-sm-6 col-sm-offset-6">
+    <button class="btn btn-success btn-lg" ng-click="vm.savePrice()">Save Result</button>
+   </div>
+</div>
+
+<div class="row" ng-show = "vm.csv.result.count > 0">
+  <h3>CSV file content</h3>
   <table class="table table-condensed table-bordered table-striped">
     <thead>
         <tr>
@@ -48,5 +55,5 @@
         </tr>
     </tbody>
   </table>
-
+</div>
 </section>

@@ -5,9 +5,9 @@
     .module('prices')
     .controller('PricesUploadController', PricesUploadController);
 
-  PricesUploadController.$inject = ['$scope', 'HotelsService'];
+  PricesUploadController.$inject = ['$scope', '$state', 'HotelsService', 'PricesService'];
 
-  function PricesUploadController($scope, HotelsService) {
+  function PricesUploadController($scope, $state, HotelsService, PricesService) {
     var vm = this;
 
     vm.hotels = HotelsService.query();
@@ -23,6 +23,7 @@
       encodingVisible: false
     };
     vm.csv.result = {};
+    vm.csv.result.count = 0;
 
     // This property will be bound to checkbox in table header
     vm.csv.result.allItemsSelected = false;
@@ -48,16 +49,61 @@
       }
     };
 
+    vm.savePrice = function () {
+      var selectedCount = 0;
+      vm.csv.result.forEach(function(csvIitem) {
+        if (csvIitem.isChecked) {
+          selectedCount = selectedCount + 1;
+
+          console.log('save into db: '+JSON.stringify(csvIitem));
+
+          vm.price = new PricesService();
+          vm.price.hotelID = csvIitem['hotelID'];
+          vm.price.checkIn = csvIitem['Check-in'];
+          vm.price.hotelName = csvIitem['Hotel Name'];
+          vm.price.URL = csvIitem['URL'];
+          vm.price.address = csvIitem['Street Address'];
+          vm.price.city = csvIitem['City'];
+          vm.price.state = csvIitem['State'];
+          vm.price.postalCode = csvIitem['Postal Code'];
+          vm.price.country = csvIitem['Country'];
+          vm.price.currentPrice = csvIitem['Current Price (USD)'];
+          vm.price.oldPrice = csvIitem['Old Price (USD)'];
+
+          vm.price.$save(successCallback, errorCallback);
+
+          function successCallback(res) {
+            console.log('success add price with id: '+res.id);
+          }
+
+          function errorCallback(res) {
+            vm.errorTranslation = res.data.message;
+          }
+
+
+        }
+      });
+
+      if (selectedCount === 0) {
+        alert('No hotel price selected');
+      } else {
+        $state.go('prices.list')
+      };
+    };
+
+
     vm.callback = function() {
       console.log('Done reading csv file.');
       console.log('Content: ' + JSON.stringify(vm.csv.result));
 
       var csvHotelName = '';
       var hotelName = '';
+      vm.csv.result.count = 0;
 
       vm.csv.result.forEach(function(csvIitem) {
         csvHotelName = csvIitem['Hotel Name'].toLowerCase();
         csvIitem.hotelID = '';
+        vm.csv.result.count = vm.csv.result.count + 1;
 
         // loop to hotel db to search for hotel ID
         vm.hotels.forEach(function(hotelItem) {

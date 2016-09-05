@@ -40,32 +40,39 @@
             </div>
         </div>
     </div>
-  <h3>Result</h3>
 
-  <div class="list-group">
-    <a ng-repeat="price in vm.prices | filter:vm.search | filter:vm.byPriceRange(vm.filterModelMin.price, vm.filterModelMax.price)" ui-sref="prices.view({ priceId: price._id })" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="price.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="price.user" ng-bind="price.user.displayName"></span>
-        <span ng-if="!price.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="price.priceID"></h4>
-      <p class="list-group-item-text" ng-bind="price.priceName"></p>
-      <b>Start URL:</b> <p class="list-group-item-text" ng-bind="price.startURL"></p>
-      <b>Address:</b> <p class="list-group-item-text" ng-bind="price.address"></p>
-      <b>Stars:</b> <p class="list-group-item-text" ng-bind="price.stars | number"></p>
-      <b>Website:</b> <p class="list-group-item-text" ng-bind="price.website"></p>
-      <b>Website URL:</b> <p class="list-group-item-text" ng-bind="price.websiteURL"></p>
-      <b>MapURL:</b> <p class="list-group-item-text" ng-bind="price.mapURL"></p>
-      <b>Number Of Google Reviews:</b> <p class="list-group-item-text" ng-bind="price.numberOfGoogleReviews | number"></p>
-      <b>Booking_com Price:</b> <p class="list-group-item-text" ng-bind="price.booking_comPrice"></p>
-      <b>Prices_com Price:</b> <p class="list-group-item-text" ng-bind="price.prices_comPrice"></p>
-      <b>Agoda Price:</b> <p class="list-group-item-text" ng-bind="price.agodaPrice"></p>
-      <b>Other Price:</b> <p class="list-group-item-text" ng-bind="price.otherPrice"></p>
-    </a>
-  </div>
+<div class="row">
+  <table class="table table-condensed table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Check-in</th>
+            <th>Hotel ID</th>
+            <th>Hotel Name</th>
+            <th>Street Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postal Code</th>
+            <th>Country</th>
+            <th>Current Price (USD)</th>
+            <th>Old Price (USD)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="price in vm.prices" | filter:vm.search | filter:vm.byPriceRange(vm.filterModelMin.price, vm.filterModelMax.price)">
+            <td>{{price.checkIn}}</td>
+            <td>{{price.hotelID}}</td>
+            <td>{{price.hotelName}}</td>
+            <td>{{price.address}}</td>
+            <td>{{price.city}}</td>
+            <td>{{price.state}}</td>
+            <td>{{price.postalCode}}</td>
+            <td>{{price.country}}</td>
+            <td>{{price.currentPrice}}</td>
+            <td>{{price.oldPrice}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
 
   <div class="alert alert-warning text-center" ng-if="vm.prices.$resolved && !vm.prices.length">
     No prices yet, why don't you <a ui-sref="prices.create">create one</a>?
